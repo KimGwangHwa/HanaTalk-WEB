@@ -16,5 +16,5 @@ deploy:
   provider: firebase
   skip_cleanup: true
   token:
-    secure: HV7RsNpuGOVv29Gm7usfaKkLVYpJiAcRXneOpT4im2w
-  project: hanatalk-cdddb
+    secure: $FIREBASE_TOKEN
+  project: $FIREBASE_PROJECT
