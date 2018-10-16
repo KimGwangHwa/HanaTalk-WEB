@@ -9,5 +9,11 @@ script:
 install:
   - npm install -g firebase-tools
 
+deploy:
+  provider: firebase
+  token:
+    secure: $FIREBASE_TOKEN
+  project: "hanatalk-cdddb"
+
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN
