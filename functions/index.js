@@ -10,9 +10,10 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
  response.send("Hello from Firebase!");
 });
 
-exports.commentPush = functions.database.ref('/LikeRelations/{id}/liked')
+exports.commentPush = functions.database.ref('/LikeRelations/{id}/liked/{opponentUid}')
 .onCreate((snap, context) => {
   console.log('#############', snap.val());
+  console.log('#############', snap.val().uid);
 
   /**
   console.log("#############", event.data);
