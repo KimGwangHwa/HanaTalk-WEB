@@ -25,6 +25,7 @@ exports.commentPush = functions.database.ref('/LikeRelations/{id}/liked')
   console.log('#############', context.params.uid, original);
 
   return null;
+  /**
   console.log("#############", event.data);
 
   const item = event.data;
@@ -49,6 +50,9 @@ exports.commentPush = functions.database.ref('/LikeRelations/{id}/liked')
     // tokenが欲しい
     pushToDevice(fcmToken, payload);
   });
+
+
+  */
 });
 
 // TODO: uidを使ってuserのdatabaseを検索
