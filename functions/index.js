@@ -11,21 +11,9 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 });
 
 exports.commentPush = functions.database.ref('/LikeRelations/{id}/liked')
-.onWrite((change, context)) => {
-  console.log('#############', context.params);
-  // Only edit data when it is first created.
-  if (change.before.exists()) {
-    return null;
-  }
-  // Exit when the data is deleted.
-  if (!change.after.exists()) {
-    return null;
-  }
-  // Grab the current value of what was written to the Realtime Database.
-  const original = change.after.val();
-  console.log('#############', context.params.uid, original);
+.onCreate((snap, context) => {
+  console.log('#############', snap.val());
 
-  return null;
   /**
   console.log("#############", event.data);
 
