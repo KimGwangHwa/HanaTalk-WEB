@@ -12,7 +12,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 
 exports.commentPush = functions.database.ref('/LikeRelations/{id}/liked')
 .onWrite(event => {
-  console.log("#############", event);
+  console.log("#############", event.data);
 
   const item = event.data;
   const uid = item.child("uid").val();
