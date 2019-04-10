@@ -12,6 +12,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 
 exports.commentPush = functions.database.ref('/LikeRelations/{id}/liked')
 .onWrite((change, context)) => {
+  console.log('#############', context.params);
   // Only edit data when it is first created.
   if (change.before.exists()) {
     return null;
