@@ -15,17 +15,13 @@ exports.commentPush = functions.database.ref('/LikeRelations/{id}/liked/{opponen
   console.log('#############', snap.val());
   console.log('#############', snap.val().uid);
 
-  /**
-  console.log("#############", event.data);
-
-  const item = event.data;
-  const uid = item.child("uid").val();
+  const uid = snap.val().uid;
   // const receiverUid = item.child("receiver").val();
   const textMessage = "Cloud Functions Test";//item.child("text").val();
-
   teamRef = functions.firestore.document('UserInfo/' + uid);
   teamRef.once('value').then(function(snapshot) {
     console.log("#############", snapshot.val());
+    console.log("#############", snapshot.val().fcmToken);
     const fcmToken = snapshot.val().fcmToken;
 
     // 通知のJSON
@@ -40,9 +36,6 @@ exports.commentPush = functions.database.ref('/LikeRelations/{id}/liked/{opponen
     // tokenが欲しい
     pushToDevice(fcmToken, payload);
   });
-
-
-  */
 });
 
 // TODO: uidを使ってuserのdatabaseを検索
