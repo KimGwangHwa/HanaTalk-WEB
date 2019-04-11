@@ -18,24 +18,39 @@ exports.commentPush = functions.database.ref('/LikeRelations/{id}/liked/{opponen
   const uid = snap.val().uid;
   // const receiverUid = item.child("receiver").val();
   const textMessage = "Cloud Functions Test";//item.child("text").val();
-  teamRef = functions.firestore.document('UserInfo/' + uid);
-  teamRef.once('value').then(function(snapshot) {
+
+  var db = admin.firestore();
+  db.collection('UserInfo/' + uid).get()
+  .then((snapshot) => {
     console.log("#############", snapshot.val());
     console.log("#############", snapshot.val().fcmToken);
-    const fcmToken = snapshot.val().fcmToken;
 
-    // 通知のJSON
-    const payload = {
-      notification: {
-        title: fcmToken,
-        body: "さん：" + textMessage,
-        badge: "1",
-        sound:"default",
-      }
-    };
-    // tokenが欲しい
-    pushToDevice(fcmToken, payload);
+    // snapshot.forEach((doc) => {
+    //   console.log(doc.id, '=>', doc.data());
+    // });
+  })
+  .catch((err) => {
+    console.log('Error getting documents', err);
   });
+
+  // teamRef = functions.firestore.document('UserInfo/' + uid);
+  // teamRef.once('value').then(function(snapshot) {
+  //   console.log("#############", snapshot.val());
+  //   console.log("#############", snapshot.val().fcmToken);
+  //   const fcmToken = snapshot.val().fcmToken;
+  //
+  //   // 通知のJSON
+  //   const payload = {
+  //     notification: {
+  //       title: fcmToken,
+  //       body: "さん：" + textMessage,
+  //       badge: "1",
+  //       sound:"default",
+  //     }
+  //   };
+  //   // tokenが欲しい
+  //   pushToDevice(fcmToken, payload);
+  // });
 });
 
 // TODO: uidを使ってuserのdatabaseを検索
