@@ -20,7 +20,7 @@ exports.commentPush = functions.database.ref('/LikeRelations/{id}/liked/{opponen
   const textMessage = "Cloud Functions Test";//item.child("text").val();
 
   var db = admin.firestore();
-  db.collection('UserInfo/' + uid).get()
+  db.collection('UserInfo').doc(uid).get()
   .then((snapshot) => {
     console.log("#############", snapshot.val());
     console.log("#############", snapshot.val().fcmToken);
