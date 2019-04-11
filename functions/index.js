@@ -22,6 +22,8 @@ exports.commentPush = functions.database.ref('/LikeRelations/{id}/liked/{opponen
   var db = admin.firestore();
   db.collection('UserInfo').doc(uid).get()
   .then((snapshot) => {
+    console.log("+++++++++++++++++");
+    console.log("#############", snapshot);
     console.log("#############", snapshot.val());
     console.log("#############", snapshot.val().fcmToken);
 
